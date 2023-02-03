@@ -21,7 +21,7 @@ class _SplashFlipState extends State<SplashFlip> {
               height: 90,
               width: 80,
               child: Image(
-                image: AssetImage('images/flip.png'),
+                image: AssetImage('images/ekart.png'),
               ))),
     );
   }

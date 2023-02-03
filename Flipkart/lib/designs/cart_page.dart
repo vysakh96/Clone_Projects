@@ -29,65 +29,61 @@ class Cart extends StatelessWidget {
         centerTitle: true,
       ),
       body: ListView.builder(
-          itemCount: img.length,
+          itemCount: name.length,
           itemBuilder: (context, index) {
             return Card(
-              child: Row(
-                children: [
-                  Container(
-                    height: 142,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color: Colors.grey[200]),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 90,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(img[index]),
-                              fit: BoxFit.fill,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      height: 150,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: Colors.grey[200]),
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 100,
+                            width: 120,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(img[index]),
+                                fit: BoxFit.fill,
+                              ),
                             ),
                           ),
-                          // child: Stack(
-                          //   children: [
-                          //     Image(image: AssetImage('images/iphone.jpg')),
-                          //     Padding(
-                          //       padding: const EdgeInsets.only(left: 80,top: 90),
-                          //       child: Icon(Icons.favorite_border,color: Colors.blue,),
-                          //     ),
-                          //   ],
-                          // ),
-                        ),
-                        SizedBox(height: 5),
-                        Text(name[index]),
-                        SizedBox(height: 5),
-                        Text(
-                          price[index],
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 15),
-                        ),
-                      ],
+                          SizedBox(height: 5),
+                          Text(name[index]),
+                          SizedBox(height: 5),
+                          Text(
+                            price[index],
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  IconButton(
-                      onPressed: () {
-                        object.favorite(img[index], name[index], price[index]);
-                        print(img[index]);
-                        print(name[index]);
-                        print(price[index]);
-                      },
-                      icon: object.icn_change(name[index])
-                          ? Icon(
-                              Icons.favorite,
-                              color: Colors.red,
-                            )
-                          : Icon(
-                              Icons.favorite_border,
-                              color: Colors.blue,
-                            )),
-                ],
+                    IconButton(
+                        onPressed: () {
+                          object.favorite(
+                              img[index], name[index], price[index]);
+                        },
+                        icon: object.icn_change(name[index])
+                            ? Icon(
+                                Icons.favorite,
+                                color: Colors.red,
+                                size: 30,
+                              )
+                            : Icon(
+                                Icons.favorite_border,
+                                color: Colors.blue,
+                                size: 30,
+                              )),
+                  ],
+                ),
               ),
             );
           }),

@@ -8,16 +8,14 @@ import '../itemDesigns/smartWatch/SmartWatch_noise.dart';
 
 import '../provider/provider_class.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+import 'model.dart';
 
-  @override
-  State<Home> createState() => _HomeState();
-}
+class Home extends StatelessWidget {
+  Home({Key? key}) : super(key: key);
 
-class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+    print('build item');
     final object = Provider.of<Provider_class>(context);
 
     return Scaffold(
@@ -47,7 +45,7 @@ class _HomeState extends State<Home> {
                                 height: 30,
                                 width: 30,
                                 child:
-                                    Image(image: AssetImage('images/flip.png')),
+                                    Image(image: AssetImage('images/ekart.png')),
                               ),
                               Text(
                                 'Flipkart',
@@ -201,22 +199,27 @@ class _HomeState extends State<Home> {
                                   Image(image: AssetImage('images/iphone.jpg')),
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                        left: 80, top: 90),
+                                        left: 80, top: 10),
                                     child: GestureDetector(
-                                        onTap: () {},
-                                        child: Icon(
-                                          Icons.favorite_border,
-                                          color: Colors.blue,
-                                        )),
+                                      onTap: () {
+                                        object.favorite('images/iphone.jpg',
+                                            'Iphone14pro', 'From ₹1,20,000');
+                                      },
+                                      child: object.icn_change('Iphone14pro')
+                                          ? Icon(
+                                              Icons.favorite,
+                                              color: Colors.red,
+                                              size: 30,
+                                            )
+                                          : Icon(
+                                              Icons.favorite_border,
+                                              color: Colors.blue,
+                                              size: 30,
+                                            ),
+                                    ),
                                   ),
                                 ],
                               ),
-                              // decoration: BoxDecoration(
-                              //   image: DecorationImage(
-                              //     image: AssetImage('images/iphone.jpg'),
-                              //     fit: BoxFit.fill,
-                              //   ),
-                              // ),
                             ),
                             SizedBox(height: 5),
                             Align(
@@ -253,21 +256,27 @@ class _HomeState extends State<Home> {
                                           AssetImage('images/sonyearbud.jpg')),
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                        left: 70, top: 90),
-                                    child: Icon(
-                                      Icons.favorite_border,
-                                      color: Colors.blue,
+                                        left: 70, top: 10),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        object.favorite('images/sonyearbud.jpg',
+                                            'Ear buds', 'From ₹1,999');
+                                      },
+                                      child: object.icn_change('Ear buds')
+                                          ? Icon(
+                                              Icons.favorite,
+                                              color: Colors.red,
+                                              size: 30,
+                                            )
+                                          : Icon(
+                                              Icons.favorite_border,
+                                              color: Colors.blue,
+                                              size: 30,
+                                            ),
                                     ),
                                   ),
                                 ],
                               ),
-                              // height: 90,
-                              // decoration: BoxDecoration(
-                              //   image: DecorationImage(
-                              //     image: AssetImage('images/sonyearbud.jpg'),
-                              //     fit: BoxFit.fill,
-                              //   ),
-                              // ),
                             ),
                             SizedBox(height: 5),
                             Align(
@@ -314,22 +323,29 @@ class _HomeState extends State<Home> {
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(
-                                          left: 70, top: 90),
-                                      child: Icon(
-                                        Icons.favorite_border,
-                                        color: Colors.blue,
+                                          left: 70, top: 10),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          object.favorite(
+                                              'images/smart watch.jpg',
+                                              '1.85" | BT',
+                                              'From ₹2,499');
+                                        },
+                                        child: object.icn_change('1.85" | BT')
+                                            ? Icon(
+                                                Icons.favorite,
+                                                color: Colors.red,
+                                                size: 30,
+                                              )
+                                            : Icon(
+                                                Icons.favorite_border,
+                                                color: Colors.blue,
+                                                size: 30,
+                                              ),
                                       ),
                                     ),
                                   ],
                                 ),
-                                // Container(
-                                //   height: 90,
-                                //   decoration: BoxDecoration(
-                                //     image: DecorationImage(
-                                //       image: AssetImage('images/smart watch.jpg'),
-                                //       fit: BoxFit.fill,
-                                //     ),
-                                //   ),
                               ),
                               SizedBox(height: 5),
                               Align(
@@ -372,6 +388,7 @@ class _HomeState extends State<Home> {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: GridView.builder(
                     shrinkWrap: true,
+                    physics: ScrollPhysics(),
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       childAspectRatio: 4 / 5.4,
@@ -379,7 +396,7 @@ class _HomeState extends State<Home> {
                       mainAxisSpacing: 10,
                       crossAxisSpacing: 10,
                     ),
-                    itemCount: itemName.length,
+                    itemCount: items.length,
                     itemBuilder: (context, index) {
                       return Container(
                         height: 142,
@@ -392,29 +409,29 @@ class _HomeState extends State<Home> {
                               height: 90,
                               child: Stack(
                                 children: [
-                                  Image(image: AssetImage(itemImage[index])),
+                                  Image(image: AssetImage(items[index].img)),
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                        left: 70, top: 90),
-                                    child: IconButton(
-                                        onPressed: () {
+                                        left: 70, top: 10),
+                                    child: GestureDetector(
+                                        onTap: () {
                                           object.favorite(
-                                              itemImage[index],
-                                              itemName[index],
-                                              itemPrice[index]);
-                                          print(itemImage[index]);
-                                          print(itemName[index]);
-                                          print(itemPrice[index]);
+                                              items[index].img,
+                                              items[index].name,
+                                              items[index].price);
                                         },
-                                        icon: object.icn_change(itemName[index])
-                                            ? Icon(
-                                                Icons.favorite,
-                                                color: Colors.red,
-                                              )
-                                            : Icon(
-                                                Icons.favorite_border,
-                                                color: Colors.blue,
-                                              )),
+                                        child:
+                                            object.icn_change(items[index].name)
+                                                ? Icon(
+                                                    Icons.favorite,
+                                                    color: Colors.red,
+                                                    size: 30,
+                                                  )
+                                                : Icon(
+                                                    Icons.favorite_border,
+                                                    color: Colors.blue,
+                                                    size: 30,
+                                                  )),
                                   ),
                                 ],
                               ),
@@ -431,11 +448,11 @@ class _HomeState extends State<Home> {
                                 alignment: Alignment.centerLeft,
                                 child: Padding(
                                   padding: const EdgeInsets.only(left: 5),
-                                  child: Text(itemName[index]),
+                                  child: Text(items[index].name),
                                 )),
                             SizedBox(height: 5),
                             Text(
-                              itemPrice[index],
+                              items[index].price,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 15),
                             ),
@@ -452,30 +469,42 @@ class _HomeState extends State<Home> {
   }
 
   // List img = ['images/img1.jpg','images/img2.jpg','images/img3.jpg','images/img4.jpg'];
-  List itemImage = [
-    'images/neckbnd.jpg',
-    'images/himalaya.jpg',
-    'images/pen.jpg',
-    'images/oppo.jpg',
-    'images/watch.jpg',
-    'images/earbuds.jpg'
+  // List itemImage = [
+  //   'images/neckbnd.jpg',
+  //   'images/himalaya.jpg',
+  //   'images/pen.jpg',
+  //   'images/oppo.jpg',
+  //   'images/watch.jpg',
+  //   'images/earbuds.jpg'
+  // ];
+  //
+  // List itemName = [
+  //   'Bault Audio',
+  //   'Face Wash',
+  //   'Cello Pen',
+  //   'Reno 8 pro',
+  //   'Dizo Wtch',
+  //   'Truke Buds'
+  // ];
+  //
+  // List itemPrice = [
+  //   'Just ₹1099',
+  //   'Just ₹199',
+  //   'Just ₹399',
+  //   'From ₹39,999',
+  //   'From ₹1999',
+  //   'Just ₹899'
+  // ];
+
+  List items = [
+    Model(img: 'images/neckbnd.jpg', name: 'Bault Audio', price: 'Just ₹1099'),
+    Model(img: 'images/himalaya.jpg', name: 'Face Wash', price: 'Just ₹199'),
+    Model(img: 'images/pen.jpg', name: 'Cello Pen', price: 'Just ₹399'),
+    Model(img: 'images/oppo.jpg', name: 'Reno 8 pro', price: 'From ₹39,999'),
+    Model(img: 'images/watch.jpg', name: 'Dizo Wtch', price: 'From ₹1999'),
+    Model(img: 'images/earbuds.jpg', name: 'Truke Buds', price: 'Just ₹899')
   ];
-  List itemName = [
-    'Bault Audio',
-    'Face Wash',
-    'Cello Pen',
-    'Reno 8 pro',
-    'Dizo Wtch',
-    'Truke Buds'
-  ];
-  List itemPrice = [
-    'Just ₹1099',
-    'Just ₹199',
-    'Just ₹399',
-    'From ₹39,999',
-    'From ₹1999',
-    'Just ₹899'
-  ];
+
   avatharImage(String img, String name) {
     return Padding(
       padding: const EdgeInsets.only(right: 15),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'account_page.dart';
 
+import 'cart_page.dart';
 import 'categories_page.dart';
 
 import 'home_page.dart';
@@ -41,10 +42,10 @@ class _NavigationState extends State<Navigation> {
             icon: Icon(Icons.account_circle_outlined),
             label: 'Account',
           ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.shopping_cart,color: Colors.black),
-          //   label: 'Cart',
-          // ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart, color: Colors.black),
+            label: 'Cart',
+          ),
         ],
         // type: BottomNavigationBarType.shifting,
         currentIndex: _selectedIndex,
@@ -59,6 +60,7 @@ class _NavigationState extends State<Navigation> {
     Categories(),
     Notifications(),
     Account_page(),
+    Cart()
   ];
   void onItemTaped(int index) {
     setState(() {

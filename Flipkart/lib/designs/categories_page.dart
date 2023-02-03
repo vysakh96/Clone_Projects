@@ -35,6 +35,7 @@ class _CategoriesState extends State<Categories> {
           children: [
             GridView.builder(
                 shrinkWrap: true,
+                physics: ScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   childAspectRatio: 4 / 5.4,
                   crossAxisCount: 4,
@@ -79,11 +80,10 @@ class _CategoriesState extends State<Categories> {
             SizedBox(height: 20),
             GridView.builder(
                 shrinkWrap: true,
+                physics: ScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   childAspectRatio: 4 / 5.4,
                   crossAxisCount: 4,
-                  // mainAxisSpacing: 10,
-                  // crossAxisSpacing: 10,
                 ),
                 itemCount: catMore_name.length,
                 itemBuilder: (context, index) {

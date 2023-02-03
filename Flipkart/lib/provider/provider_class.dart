@@ -5,14 +5,11 @@ class Provider_class extends ChangeNotifier {
   List _favName = [];
   List _favPrice = [];
 
-  get favoriteImg => _favImg;
+  List get favoriteImg => _favImg;
   List get favoriteName => _favName;
   List get favoritePrice => _favPrice;
 
   void favorite(String img, String name, String price) {
-    print(img);
-    print(name);
-    print(price);
     final favNameList = _favName.contains(name);
     if (favNameList) {
       _favImg.remove(img);
