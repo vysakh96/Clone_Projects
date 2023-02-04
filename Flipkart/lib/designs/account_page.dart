@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'cart_page.dart';
+import 'log_in_page.dart';
 
 class Account_page extends StatefulWidget {
   const Account_page({Key? key}) : super(key: key);
@@ -220,19 +221,28 @@ class _Account_pageState extends State<Account_page> {
                       color: Colors.black,
                     ),
                   ),
-                  ListTile(
-                    leading: Icon(
-                      Icons.person,
-                      color: Colors.blue[900],
-                    ),
-                    title: Text(
-                      'Edit Profile',
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
-                    ),
-                    trailing: Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.black,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LogIn(),
+                          ));
+                    },
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.person,
+                        color: Colors.blue[900],
+                      ),
+                      title: Text(
+                        'Edit Profile',
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.w400),
+                      ),
+                      trailing: Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
                   ListTile(
